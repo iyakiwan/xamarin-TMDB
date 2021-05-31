@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieDbApp.Pages.FavoritePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="listMovie"
+                      Margin="0,8,0,0"
+                  HasUnevenRows="true"
+                  ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell 
+                        ImageSource="{Binding PosterPath, StringFormat='https://image.tmdb.org/t/p/w342{0:N}'}"                    
+                        Text="{Binding Title}"
+                        Detail="{Binding VoteAverage , StringFormat='☆ {0:N}'}"
+                        />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

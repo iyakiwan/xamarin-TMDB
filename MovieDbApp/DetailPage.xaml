@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieDbApp.DetailPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional">
+                <StackLayout Padding="8">
+                    <Image Source="{Binding BackdropPath, StringFormat='https://image.tmdb.org/t/p/original{0:N}'}" 
+                   Aspect="AspectFit" HorizontalOptions="FillAndExpand"/>
+
+                    <BoxView Color="Black" HeightRequest="2" Margin="0,8,0,8"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="{Binding PosterPath, StringFormat='https://image.tmdb.org/t/p/w342{0:N}'}" 
+                   Aspect="AspectFit"/>
+
+                        <StackLayout Margin="8,0,0,0">
+                            <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center"/>
+                            <Label Text="{Binding VoteAverage, StringFormat='☆ {0:N}'}"  />
+                            <Label Text="{Binding OriginalLanguage, StringFormat='Language: {0:N}'}"  />
+                            <Label Text="{Binding ReleaseDate, StringFormat='Date: {0:N}'}"  />
+                            <Label Text="{Binding Adult, StringFormat='Adult: {0:N}'}"  />
+
+                        </StackLayout>
+                    </StackLayout>
+
+                    <Label Text="Deskripsi" FontSize="16" Margin="0,8,0,0"/>
+                    <Label Text="{Binding Overview}"/>
+                </StackLayout>
+            </ScrollView>
+            
+            <ImageButton
+                AbsoluteLayout.LayoutBounds="0.95,0.95,60,60"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Blue"
+                Clicked="ClickFav"
+                CornerRadius="30"
+                HeightRequest="60"
+                Padding="10"
+                x:Name="btnFav"
+                Source="fav_out_logo.png"
+                WidthRequest="80" />
+        </AbsoluteLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

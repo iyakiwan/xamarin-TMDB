@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieDbApp.MainPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Fav"
+                     IconImageSource="fav_logo.png"
+                     Order="Primary"
+                     x:Name="btnFav"
+                     Clicked="OnClickFav"
+                     Priority="0" />
+    </ContentPage.ToolbarItems>
+    
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="SizeProportional">
+            <ListView x:Name="listMovie"
+                      Margin="0,8,0,0"
+                  HasUnevenRows="true"
+                  ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell 
+                        ImageSource="{Binding PosterPath, StringFormat='https://image.tmdb.org/t/p/w342{0:N}'}"                    
+                        Text="{Binding Title}"
+                        Detail="{Binding VoteAverage , StringFormat='☆ {0:N}'}"
+                        />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout Orientation="Horizontal" >
+                <Button x:Name="btnPrev" Text="Prev" Clicked="OnClickPrev"/>
+                <Label x:Name="textPagging" Text="0" HorizontalOptions="CenterAndExpand" FontSize="20" Padding="8"/>
+                <Button x:Name="btnNext" Text="Next" Clicked="OnClickNext"/>
+            </StackLayout>
+        </StackLayout>
+
+        <ActivityIndicator AbsoluteLayout.LayoutBounds="0.5, 0.5, 50,50"
+                           AbsoluteLayout.LayoutFlags="PositionProportional"
+                           IsRunning="true" 
+                           IsVisible="false" 
+                           x:Name="loadingDataMovie"/>
+    </AbsoluteLayout>
+
+</ContentPage>
