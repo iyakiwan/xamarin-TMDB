@@ -15,6 +15,15 @@ namespace MovieDbApp.Pages
         public TmdbPage()
         {
             InitializeComponent();
+
+            this.Children.Add(new MainPage());
+            this.Children.Add(new NowPlayingPage());
+            this.Children.Add(new UpcomingPage());
+        }
+
+        private async void OnClickFav(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new FavoritePage());
         }
     }
 }

@@ -1,26 +1,23 @@
 ﻿using MovieDbApp.Model;
-using MovieDbApp.Pages;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WeatherApp.Data;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace MovieDbApp
+namespace MovieDbApp.Pages
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class UpcomingPage : ContentPage
     {
         RestService restService;
         int page = 0;
-
-        public MainPage()
+        public UpcomingPage()
         {
             InitializeComponent();
-            
-            //Title = "The Movie DB";
 
             restService = new RestService();
 
@@ -29,22 +26,15 @@ namespace MovieDbApp
             btnPrev.IsEnabled = false;
             btnNext.IsEnabled = false;
 
-            //Task.Run(() => { OnLoadData("1"); }).Wait();
-            //label.Text = GenerateRequest(Constants.Endpoint, "/movie/popular", "1");
-            Console.WriteLine(GenerateRequest(Constants.Endpoint, "/movie/popular", "1"));
-
             page = 1;
             OnLoadMovieData();
         }
-
 
         async void OnLoadMovieData()
         {
             loadingDataMovie.IsVisible = true;
 
-            //btnGetData.Text = GenerateRequest(Constants.Endpoint, "/movie/popular", "1");
-            //BindingContext = await restService.GetMovieData(GenerateRequest(Constants.Endpoint, "/movie/popular", "1"));
-            MovieData movie = await restService.GetMovieData(GenerateRequest(Constants.Endpoint, "/movie/popular", page.ToString()));
+            MovieData movie = await restService.GetMovieData(GenerateRequest(Constants.Endpoint, "/movie/upcoming", page.ToString()));
             listMovie.ItemsSource = movie.Results;
 
             loadingDataMovie.IsVisible = false;
@@ -68,7 +58,7 @@ namespace MovieDbApp
 
         void CondtionPagging()
         {
-            if(page <= 1)
+            if (page <= 1)
             {
                 btnPrev.IsEnabled = false;
             }

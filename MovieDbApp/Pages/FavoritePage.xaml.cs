@@ -17,7 +17,7 @@ namespace MovieDbApp.Pages
         {
             InitializeComponent();
 
-            Title = "Movie List";
+            //Title = "Movie List";
         }
 
         protected override void OnAppearing()

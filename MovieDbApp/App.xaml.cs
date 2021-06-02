@@ -1,4 +1,5 @@
 ﻿using MovieDbApp.Data;
+using MovieDbApp.Pages;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,7 +26,7 @@ namespace MovieDbApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new TmdbPage());
         }
 
         protected override void OnStart()
